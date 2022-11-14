@@ -14,11 +14,20 @@ public class Event : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Scene currScene = SceneManager.GetActiveScene();
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
         int ecount = enemys.Length;
         if (ecount == 0)
         {
-            SceneManager.LoadScene("Level2");
+            if (currScene.buildIndex==0)
+            {
+                SceneManager.LoadScene(1);
+            }
+            else if(currScene.buildIndex==1)
+            {
+                SceneManager.LoadScene(0);
+            }
+            
         }
     }
 }

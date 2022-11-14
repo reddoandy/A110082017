@@ -11,7 +11,7 @@ public class Player : MonoBehaviour
     public GameObject bulletPrefab;
 
     private CharacterController controller;
-
+    
     private GameObject focusEnemy;
 
     void Start()
@@ -115,6 +115,18 @@ public class Player : MonoBehaviour
 
             // 暫停 0.5 秒
             yield return new WaitForSeconds(0.5f);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="Bullet")
+        {
+            HP.hp -= 10;
+            if(HP.hp<=0)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                HP.hp = 100;
+            }
         }
     }
 }

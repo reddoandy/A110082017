@@ -7,7 +7,7 @@ public class AttackEnemy : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
 
-
+    private float hp = 100;
     private GameObject focusEnemy;
     // Start is called before the first frame update
     void Start()
@@ -62,7 +62,19 @@ public class AttackEnemy : MonoBehaviour
 
 
             // ¼È°± 0.5 ¬í
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
+        }
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.tag=="Bullet")
+        {
+            Bullet bullet = other.GetComponent<Bullet>();
+            hp -= bullet.atk;
+            if(hp<=0)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -35,5 +35,11 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
+        if (other.tag == "Player")
+        {
+            // 刪除自己
+            gameObject.SetActive(false);
+            Destroy(gameObject);
+        }
     }
 }
